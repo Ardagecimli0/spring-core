@@ -21,7 +21,7 @@ public class AppConfig {
         users.add(new User("Arda"));
 
         userService1.setUsers(users);
-        return userService();
+        return userService1;
     }
 
 }

@@ -1,26 +1,23 @@
 package com.ardagecimli.main;
 
+import com.ardagecimli.config.AppConfig;
+import com.ardagecimli.services.LoginService;
 import com.ardagecimli.services.User;
 import com.ardagecimli.services.UserService;
-
-import java.util.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
-
     public static void main(String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        UserService userService =  context.getBean(UserService.class);
 
-        UserService userService1 = new UserService();
+        for(User User : userService.getUsers()) {
+            System.out.println(User);
+        }
 
-        List<User> users = new ArrayList<>();
-
-        users.add(new User("Arda"));
-
-        userService1.setUsers(users);
-        System.out.println("Liste Boyutu: " + userService1.getUsers().size());
-
-
-
-
+        LoginService loginService = new LoginService();
+        loginService.login();
 
 
     }
